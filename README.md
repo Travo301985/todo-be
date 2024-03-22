@@ -5,3 +5,4 @@
 * `npm init`
 * `npm install fastify or npm install express`
 * `npm i pg`
+* `npm install cors`
