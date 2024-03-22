@@ -15,6 +15,26 @@ const pool = new Pool({
 // Middleware - logs
 app.use(express.json());
 
+app.use((req, res, next) => {
+  res.on('finish', async () => {
+    const { user_id, task_id } = req.body; // assuming these values are sent in the request body
+    const action = `${req.method} ${req.path}`; // e.g. "GET /users"
+
+    if (user_id && task_id && action) {
+      try {
+        await pool.query(
+          'INSERT INTO logs (user_id, task_id, action) VALUES ($1, $2, $3)',
+          [user_id, task_id, action]
+        );
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  });
+
+  next(); // proceed to the next middleware or route handler
+});
+
 app.get('/users', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM users');
@@ -92,4 +112,10 @@ app.post('/tasks', async (req, res) => {
     console.error(err);
     res.status(500).json({ error: 'An error occurred, please try again' });
   }
+});
+
+
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
