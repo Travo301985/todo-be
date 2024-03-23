@@ -10,7 +10,7 @@ router.delete("/tasks/:id", async (req, res) => {
     await pool.query("DELETE FROM tasks WHERE task_id = $1", [id]);
     res.status(204).send();
   } catch (err) {
-    res.status(500).json({ err });
+    res.status(500).json({ error: err?.message });
   }
 });
 
@@ -26,7 +26,7 @@ router.put("/tasks/:id", async (req, res) => {
 
     res.json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ err });
+    res.status(500).json({ error: err?.message });
   }
 });
 
@@ -45,7 +45,7 @@ router.post("/tasks", async (req, res) => {
 
     res.status(201).json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ err });
+    res.status(500).json({ error: err?.message });
   }
 });
 

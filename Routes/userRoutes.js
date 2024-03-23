@@ -1,6 +1,5 @@
 const express = require("express");
-const pool = require('../database');
-const app = express();
+const pool = require("../database");
 const bcrypt = require("bcrypt");
 
 const router = express.Router();
@@ -14,11 +13,13 @@ router.post("/login", async (req, res) => {
     ]);
     const user = result.rows[0];
 
+    console.log(user);
+
     if (!user) {
-      return res.status(400).json({ error: "Invalid username or password" });
+      return res.status(400).json({ error: "User account not found" });
     }
 
-    const passwordMatches = await bcrypt.compare(password, user.password);
+    const passwordMatches = await bcrypt.compare(password, user?.password);
 
     if (!passwordMatches) {
       return res.status(400).json({ error: "Invalid username or password" });
@@ -26,7 +27,7 @@ router.post("/login", async (req, res) => {
 
     res.json({ message: "Login successful" });
   } catch (err) {
-    res.status(500).json({ err });
+    res.status(500).json({ error: err?.message });
   }
 });
 
@@ -35,7 +36,7 @@ router.get("/users", async (req, res) => {
     const result = await pool.query("SELECT * FROM users");
     res.json(result.rows);
   } catch (err) {
-    res.status(500).json({ err });
+    res.status(500).json({ error: err?.message });
   }
 });
 
@@ -58,7 +59,7 @@ router.post("/users", async (req, res) => {
 
     res.status(201).json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ err });
+    res.status(500).json({ error: err?.message });
   }
 });
 
