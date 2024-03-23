@@ -1,7 +1,8 @@
 # Todo List Application
 
-### How to run
+To add more flesh to the Todo List Application, you can follow these steps:
 
+### How to run
 - `cd /path/to/your/project`
 - `npm install`
 - `npm start` on localhost
@@ -48,6 +49,17 @@
 ### Use CORS:
 
 - In the main application file (e.g., `app.js` or `index.js`), import the `cors` package and use it as middleware to enable CORS.
+- For Express, you can use the following code:
+
+  ```javascript
+  const express = require("express");
+  const cors = require("cors");
+
+  const app = express();
+
+  // Enable CORS
+  app.use(cors());
+  ```
 
 ### Implement REST API endpoints:
 
@@ -60,3 +72,5 @@
     - Update the README.md file to provide instructions on how to run and use the Todo List Application.
     - Include information about the available API endpoints, their functionalities, and request/response formats.
     - Add any other relevant details or documentation that would be helpful for users or developers interacting with the application.
+
+By following these steps, you can add more functionality and structure to the Todo List Application, including setting up the necessary dependencies, database connection, routes, and implementing the REST API endpoints.
