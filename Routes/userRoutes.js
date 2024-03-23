@@ -13,8 +13,6 @@ router.post("/login", async (req, res) => {
     ]);
     const user = result.rows[0];
 
-    console.log(user);
-
     if (!user) {
       return res.status(400).json({ error: "User account not found" });
     }
