@@ -2,7 +2,7 @@
 FROM node:14-alpine
 
 # Set working directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/be
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expose port
-EXPOSE 3000
+EXPOSE 4000
 
 # Command to run the application
-CMD ["node", "app.js"]
+CMD ["node", "index.js"]
