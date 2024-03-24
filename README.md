@@ -54,9 +54,3 @@
     - Using the chosen web framework (Fastify or Express), define the REST API endpoints for handling CRUD operations on the todo list items.
     - Create routes for GET, POST, and PUT requests to retrieve, create, and update todo items, respectively.
     - Implement the necessary logic in these routes to interact with the database and perform the corresponding CRUD operations.
-
-### Update README.md:
-
-    - Update the README.md file to provide instructions on how to run and use the Todo List Application.
-    - Include information about the available API endpoints, their functionalities, and request/response formats.
-    - Add any other relevant details or documentation that would be helpful for users or developers interacting with the application.
